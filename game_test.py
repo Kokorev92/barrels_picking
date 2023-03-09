@@ -3,7 +3,6 @@ import pygame
 pygame.init()
 keep_going = True
 base_speed = 4
-radius = 30
 
 screen = pygame.display.set_mode([0, 0], pygame.FULLSCREEN)
 screen_rect = screen.get_rect()
