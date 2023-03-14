@@ -14,7 +14,7 @@ car = pygame.transform.scale(car, (100, 200))
 car_rect = car.get_rect()
 
 conus = pygame.image.load("conus.png")
-conus = pygame.transform.scale(conus, (75, 75))
+conus = pygame.transform.scale(conus, (50, 50))
 conus_rect = conus.get_rect()
 
 x = screen_rect.centerx - car_rect.centerx
