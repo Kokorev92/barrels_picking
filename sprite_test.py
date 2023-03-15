@@ -72,7 +72,7 @@ while keep_going:
             game_over = True
     else:
         f = pygame.font.Font('resources/3dumb.ttf', 78)
-        game_over_text = f.render("GAME OVER", 1, (255, 0, 0))
+        game_over_text = f.render("GAME OVER", 1, (246, 198, 1))
         text_rect = game_over_text.get_rect(center=screen.get_rect().center)
         screen.blit(game_over_text, text_rect)
 
