@@ -11,35 +11,33 @@ timer = pygame.time.Clock()
 random.seed()
 FPS = 60
 
-conuses_images = ['conus.png', 'conus.png', 'conus.png']
-conuses_serf = [pygame.image.load('resources/' + path).convert_alpha() for path in conuses_images]
-conuses = pygame.sprite.Group()
+cone_image = 'conus.png'
+cone_serf = pygame.image.load('resources/' + cone_image).convert_alpha()
+cones = pygame.sprite.Group()
 pygame.time.set_timer(pygame.USEREVENT, 250)
 
+
 def create_Conuse(group):
-    i = random.randint(0, len(conuses_serf) - 1)
     x = random.randint(0, screen.get_rect().width)
-    # speed = random.randint(1, 5)
     speed = 5
-    return Conus(x, speed, conuses_serf[i], group)
+    return Conus(x, speed, cone_serf, group)
 
 
-create_Conuse(conuses)
+create_Conuse(cones)
 
 while keep_going:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             keep_going = False
         if event.type == pygame.USEREVENT:
-            create_Conuse(conuses)
+            create_Conuse(cones)
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
         keep_going = False
 
     screen.fill([127, 127, 127])
-    conuses.draw(screen)
+    cones.draw(screen)
 
-
-    conuses.update(screen.get_rect().height)
+    cones.update(screen.get_rect().height)
     pygame.display.update()
     timer.tick(FPS)
 
