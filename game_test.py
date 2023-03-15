@@ -9,11 +9,11 @@ screen_rect = screen.get_rect()
 
 timer = pygame.time.Clock()
 
-car = pygame.image.load("car.png")
+car = pygame.image.load("resources/car.png")
 car = pygame.transform.scale(car, (100, 200))
 car_rect = car.get_rect()
 
-conus = pygame.image.load("conus.png")
+conus = pygame.image.load("resources/conus.png")
 conus = pygame.transform.scale(conus, (50, 50))
 conus_rect = conus.get_rect()
 

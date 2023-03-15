@@ -12,15 +12,15 @@ random.seed()
 FPS = 60
 
 conuses_images = ['conus.png', 'conus.png', 'conus.png']
-conuses_serf = [pygame.image.load(path).convert_alpha() for path in conuses_images]
+conuses_serf = [pygame.image.load('resources/' + path).convert_alpha() for path in conuses_images]
 conuses = pygame.sprite.Group()
-pygame.time.set_timer(pygame.USEREVENT, 500)
+pygame.time.set_timer(pygame.USEREVENT, 250)
 
 def create_Conuse(group):
     i = random.randint(0, len(conuses_serf) - 1)
     x = random.randint(0, screen.get_rect().width)
-    speed = random.randint(1, 5)
-
+    # speed = random.randint(1, 5)
+    speed = 5
     return Conus(x, speed, conuses_serf[i], group)
 
 
@@ -42,6 +42,5 @@ while keep_going:
     conuses.update(screen.get_rect().height)
     pygame.display.update()
     timer.tick(FPS)
-    print(len(conuses))
 
 pygame.quit()
