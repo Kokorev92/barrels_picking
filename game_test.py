@@ -53,9 +53,9 @@ while keep_going:
     car_rect.x = x
     car_rect.y = y
 
-    if car_rect.colliderect(conus_rect):
-        conus_rect.x = 4000
-        conus_rect.y = 4000
+    # if car_rect.colliderect(conus_rect):
+    #     conus_rect.x = 4000
+    #     conus_rect.y = 4000
 
     screen.fill((80, 80, 80))
     screen.blit(conus, conus_rect)
