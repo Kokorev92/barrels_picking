@@ -14,7 +14,7 @@ screen = pygame.display.set_mode([0, 0], pygame.FULLSCREEN)
 timer = pygame.time.Clock()
 random.seed()
 FPS = 60
-pygame.time.set_timer(pygame.USEREVENT, 200)
+pygame.time.set_timer(pygame.USEREVENT, 500)
 car_base_speed = 5
 
 cone_image = 'cone.png'
@@ -68,7 +68,7 @@ while keep_going:
         screen.blit(car.image, car.rect)
         cones.update(screen.get_rect().height)
         car.update(car_x, car_y)
-        if pygame.sprite.spritecollideany(car, cones):
+        if pygame.sprite.spritecollideany(car, cones, pygame.sprite.collide_mask):
             game_over = True
     else:
         f = pygame.font.Font('resources/3dumb.ttf', 78)

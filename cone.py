@@ -8,6 +8,7 @@ class Cone(pygame.sprite.Sprite):
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect(center=(x, -100))
         self.speed = speed
+        self.mask = pygame.mask.from_surface(self.image)
         self.add(group)
 
     def update(self, *args):
