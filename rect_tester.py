@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 screen = pygame.display.set_mode([700, 700])
-conus = pygame.image.load("resources/conus.png")
+conus = pygame.image.load("resources/cone.png")
 conus = pygame.transform.scale(conus, [100, 100])
 conus_rect = conus.get_rect(topleft=[100,100])
 print(conus_rect)

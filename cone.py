@@ -1,6 +1,7 @@
 import pygame
 
-class Conus(pygame.sprite.Sprite):
+
+class Cone(pygame.sprite.Sprite):
     def __init__(self, x, speed, surf, group):
         pygame.sprite.Sprite.__init__(self)
         self.image = surf
