@@ -34,8 +34,8 @@ border_horizontal = screen.get_size()[1] - car.rect.height
 
 def create_cone(group):
     x = random.randint(0, screen.get_rect().width)
-    speed = 5
-    return Cone(x, speed, cone_serf, group)
+    cone_speed = 5
+    return Cone(x, cone_speed, cone_serf, group)
 
 
 create_cone(cones)
@@ -71,7 +71,7 @@ while keep_going:
         if pygame.sprite.spritecollideany(car, cones):
             game_over = True
     else:
-        f = pygame.font.SysFont('arial', 50, True)
+        f = pygame.font.Font('resources/3dumb.ttf', 78)
         game_over_text = f.render("GAME OVER", 1, (255, 0, 0))
         text_rect = game_over_text.get_rect(center=screen.get_rect().center)
         screen.blit(game_over_text, text_rect)
