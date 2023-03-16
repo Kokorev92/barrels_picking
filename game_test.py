@@ -38,6 +38,13 @@ border_horizontal = screen.get_size()[1] - car.rect.height
 scores = 0
 
 
+def print_current_scpres(screen):
+    current_scores_font = pygame.font.SysFont('arial', 30, bold=True)
+    current_scores_text = current_scores_font.render(f"Scores: {scores}", True, (0, 0, 0))
+    current_scores_rect = current_scores_text.get_rect(bottomright=screen.get_rect().bottomright)
+    screen.blit(current_scores_text, current_scores_rect)
+
+
 def create_cone(group):
     x = random.randint(0, screen.get_rect().width)
     cone_speed = 5
@@ -45,7 +52,7 @@ def create_cone(group):
 
 
 def create_barrel(group):
-    x = random.randint(0,  screen.get_rect().width)
+    x = random.randint(0, screen.get_rect().width)
     barrel_speed = 5
     return Barrel(x, barrel_speed, barrel_surf, group)
 
@@ -81,6 +88,7 @@ while keep_going:
         cones.update(screen.get_rect().height)
         barrels.update(screen.get_rect().height)
         car.update(car_x, car_y)
+        print_current_scpres(screen)
         if pygame.sprite.spritecollideany(car, cones, pygame.sprite.collide_mask):
             game_over = True
         collide_barrel = pygame.sprite.spritecollideany(car, barrels, pygame.sprite.collide_mask)
@@ -89,8 +97,8 @@ while keep_going:
             scores += 1
     else:
         f = pygame.font.Font('resources/3dumb.ttf', 78)
-        game_over_text = f.render("GAME OVER", 1, (246, 198, 1))
-        scores_text = f.render(f"Scores: {scores}", 1,  (246, 198, 1))
+        game_over_text = f.render("GAME OVER", True, (246, 198, 1))
+        scores_text = f.render(f"Total scores: {scores}", True, (246, 198, 1))
         text_rect = game_over_text.get_rect(center=screen.get_rect().center)
         scores_text_rect = game_over_text.get_rect(top=text_rect.bottom, centerx=text_rect.centerx)
         screen.blit(game_over_text, text_rect)
