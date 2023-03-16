@@ -1,8 +1,8 @@
 import pygame
 import random
-
 from cone import Cone
 from car import Car
+from barrel import Barrel
 
 pygame.init()
 pygame.mouse.set_visible(False)
@@ -15,7 +15,7 @@ timer = pygame.time.Clock()
 random.seed()
 FPS = 60
 pygame.time.set_timer(pygame.USEREVENT, 500)
-car_base_speed = 5
+car_base_speed = 6
 
 cone_image = 'cone.png'
 cone_serf = pygame.image.load('resources/' + cone_image).convert_alpha()
@@ -28,8 +28,14 @@ car = Car(0, 0, car_base_speed, car_serf)
 car_x = screen.get_rect().centerx - car.rect.centerx
 car_y = screen.get_rect().centery - car.rect.centery
 
+barrel_image = 'barrel.png'
+barrel_surf = pygame.image.load('resources/' + barrel_image).convert_alpha()
+barrels = pygame.sprite.Group()
+
 border_vertical = screen.get_size()[0] - car.rect.width
 border_horizontal = screen.get_size()[1] - car.rect.height
+
+scores = 0
 
 
 def create_cone(group):
@@ -38,7 +44,11 @@ def create_cone(group):
     return Cone(x, cone_speed, cone_serf, group)
 
 
-create_cone(cones)
+def create_barrel(group):
+    x = random.randint(0,  screen.get_rect().width)
+    barrel_speed = 5
+    return Barrel(x, barrel_speed, barrel_surf, group)
+
 
 while keep_going:
     for event in pygame.event.get():
@@ -46,6 +56,7 @@ while keep_going:
             pygame.quit()
         if event.type == pygame.USEREVENT:
             create_cone(cones)
+            create_barrel(barrels)
     if pygame.key.get_pressed()[pygame.K_ESCAPE]:
         keep_going = False
 
@@ -65,16 +76,25 @@ while keep_going:
 
         screen.fill([127, 127, 127])
         cones.draw(screen)
+        barrels.draw(screen)
         screen.blit(car.image, car.rect)
         cones.update(screen.get_rect().height)
+        barrels.update(screen.get_rect().height)
         car.update(car_x, car_y)
         if pygame.sprite.spritecollideany(car, cones, pygame.sprite.collide_mask):
             game_over = True
+        collide_barrel = pygame.sprite.spritecollideany(car, barrels, pygame.sprite.collide_mask)
+        if collide_barrel:
+            collide_barrel.kill()
+            scores += 1
     else:
         f = pygame.font.Font('resources/3dumb.ttf', 78)
         game_over_text = f.render("GAME OVER", 1, (246, 198, 1))
+        scores_text = f.render(f"Scores: {scores}", 1,  (246, 198, 1))
         text_rect = game_over_text.get_rect(center=screen.get_rect().center)
+        scores_text_rect = game_over_text.get_rect(top=text_rect.bottom, centerx=text_rect.centerx)
         screen.blit(game_over_text, text_rect)
+        screen.blit(scores_text, scores_text_rect)
 
     pygame.display.update()
     timer.tick(FPS)
