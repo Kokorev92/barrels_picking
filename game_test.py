@@ -18,12 +18,12 @@ pygame.time.set_timer(pygame.USEREVENT, 500)
 car_base_speed = 6
 
 cone_image = 'cone.png'
-cone_serf = pygame.image.load('resources/' + cone_image).convert_alpha()
+cone_surf = pygame.image.load('resources/' + cone_image).convert_alpha()
 cones = pygame.sprite.Group()
 
 car_image = 'car.png'
-car_serf = pygame.image.load('resources/' + car_image).convert_alpha()
-car = Car(0, 0, car_base_speed, car_serf)
+car_surf = pygame.image.load('resources/' + car_image).convert_alpha()
+car = Car(0, 0, car_base_speed, car_surf)
 
 car_x = screen.get_rect().centerx - car.rect.centerx
 car_y = screen.get_rect().centery - car.rect.centery
@@ -48,7 +48,7 @@ def print_current_scores():
 def create_cone(group):
     x = random.randint(0, screen.get_rect().width)
     cone_speed = 5
-    return Cone(x, cone_speed, cone_serf, group)
+    return Cone(x, cone_speed, cone_surf, group)
 
 
 def create_barrel(group):
