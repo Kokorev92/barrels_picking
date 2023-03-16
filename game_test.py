@@ -96,6 +96,7 @@ while keep_going:
             collide_barrel.kill()
             scores += 1
     else:
+        pygame.time.set_timer(pygame.USEREVENT, 0)
         f = pygame.font.Font('resources/3dumb.ttf', 78)
         game_over_text = f.render("GAME OVER", True, (246, 198, 1))
         scores_text = f.render(f"Total scores: {scores}", True, (246, 198, 1))
