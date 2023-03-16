@@ -62,7 +62,7 @@ def show_game_over():
     game_over_text = f.render("GAME OVER", True, (246, 198, 1))
     scores_text = f.render(f"Total scores: {scores}", True, (246, 198, 1))
     text_rect = game_over_text.get_rect(center=screen.get_rect().center)
-    scores_text_rect = game_over_text.get_rect(top=text_rect.bottom, centerx=text_rect.centerx)
+    scores_text_rect = scores_text.get_rect(top=text_rect.bottom, centerx=text_rect.centerx)
     screen.blit(game_over_text, text_rect)
     screen.blit(scores_text, scores_text_rect)
 
